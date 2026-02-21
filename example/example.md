@@ -21,12 +21,12 @@
 ```
 ### MD
 ```
-运行MD模拟（10000 步；输入 ./pdb/protein_A_apo.pdb.pdb；输出到 ./md）
+运行MD模拟（10000 步；输入 ./pdb/protein_A_apo.pdb；输出到 ./md）
 ```
 
 ### 预测结合口袋
 ```
-预测结合口袋（输入 ./pdb/protein_A_apo.pdb.pdb；输出到 ./pocket/）
+预测结合口袋（输入 ./pdb/protein_A_apo.pdb；输出到 ./pocket/）
 ```
 
 ### 分子生成
