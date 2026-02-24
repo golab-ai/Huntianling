@@ -48,7 +48,7 @@ cd Huntianling
 #### 2. Create a conda environment
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yaml
 conda activate huntianling
 ```
 
