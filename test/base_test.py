@@ -5,6 +5,33 @@ import subprocess
 import threading
 import glob
 
+"""
+TEST_MIN_LEVEL=1 python -m unittest discover test
+"""
+
+
+DEFAULT_MIN_LEVEL = -1
+def test_level(level: int):
+    """
+    装饰器：给测试方法定级。当测试的 level 低于当前 min_level 时，该测试会被 skip。
+    用法:
+        @test_level(1)
+        def test_foo(self): ...
+        @test_level(3)
+        def test_bar(self): ...
+    运行时可设置: export TEST_MIN_LEVEL=2  则 level=0,1 的测试被跳过，level>=2 的会执行。
+    """
+    min_level = int(os.environ.get("TEST_MIN_LEVEL", DEFAULT_MIN_LEVEL))
+
+    def decorator(func):
+        if level < min_level:
+            return unittest.skip(
+                f"test level {level} < min level {min_level} (set TEST_MIN_LEVEL to run)"
+            )(func)
+        return func
+
+    return decorator
+
 class BaseTestCase(unittest.TestCase):
     """所有测试用例可继承的基类，提供通用断言与 setUp/tearDown。"""
 
