@@ -21,18 +21,18 @@ license: Proprietary. LICENSE.txt has complete terms
 
 如果不指定原子类型定义文件
 ```bash
-craton  craton ff atom_type -i  -i {{input_file}} -o {{output_path}}
+craton ff atom_type -i {{input_file}} -o {{output_path}}
 
 ```
 
 ##没有输出的文件夹
 ```bash
-craton prepare ligand -i {{input_file}} 
+craton ff atom_type -i {{input_file}} 
 
 ```
 
 ##如果指定了原子类型定义文件
 ```bash
-craton prepare ligand -i {{input_file}} -f {{atom_type_file}} -o {{output_path}}
+craton ff atom_type  -i {{input_file}} -f {{atom_type_file}} -o {{output_path}}
 
 ```
