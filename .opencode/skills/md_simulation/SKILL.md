@@ -11,16 +11,22 @@ When the user provides a protein structure file (.pdb), a simulation length (in 
 | 参数名 | 类型 | 必填 | 描述 |
 | :--- | :--- | :--- | :--- |
 | `pdb_file` | string | 是 | 目标受体（Protein）文件路径，扩展名为 .pdb |
-| `output_dir` | string | 是 | 文件输出的目录 |
-| `md_time` | float | 否 | 模拟步数 |
+| `output_dir` | string | 否 | 文件输出的目录，默认输出到.output文件夹下 |
+| `md_time` | float | 否 | 模拟步数，默认1ns |
 
 ## 执行
-### 如果有输入模拟的步数
+### 如果有输入模拟的步数，有文件输出目录
 ```bash
-python pdb2gromacs.py {{pdb_file}} --output-dir {{output_dir}} --md-time {{md_time}}
+bash run_job.sh -t {{md_time}} -o {{output_dir}} {{pdb_file}} 
 ```
 
-### 如果没有输入的模拟步数
+### 如果没有输入的模拟步数，有文件输出目录
 ```bash
-python pdb2gromacs.py {{pdb_file}} --output-dir {{output_dir}}
+bash run_job.sh -o {{output_dir}} {{pdb_file}} 
 ```
+
+### 如果没有输入的模拟步数，没有文件输出目录，则默认输出到.output文件夹下
+```bash
+bash run_job.sh {{pdb_file}} 
+```
+

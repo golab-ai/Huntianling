@@ -1,6 +1,6 @@
 ---
 name: ligand-prepare
-description: 对化合物、小分子或配体进行准备工作，进行加氢、质子化操作等
+description: 对化合物、小分子或配体进行准备工作，进行加氢、质子化、能量最小化等操作，用于后续的分子对接、分子动力学等计算
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
