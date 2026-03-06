@@ -23,11 +23,11 @@ license: Proprietary. LICENSE.txt has complete terms
 ##如果有输出文件夹
 ```bash
 craton mm calculate force -i {{inputs}} -o {{output_path}}
-
 ```
 
 ##如果没有输出文件夹
 ```bash
 craton mm calculate force -i {{inputs}}
-
 ```
+
+计算会生成一个mtx文件，force与energy会显示在文件末尾，请使用`tail -n 500`读取

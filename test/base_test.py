@@ -9,8 +9,10 @@ import glob
 TEST_MIN_LEVEL=1 python -m unittest discover test
 """
 
-
+DEFAULT_MODEL = "zhipuai/glm-4.7"
 DEFAULT_MIN_LEVEL = -1
+
+
 def test_level(level: int):
     """
     装饰器：给测试方法定级。当测试的 level 低于当前 min_level 时，该测试会被 skip。
@@ -56,7 +58,7 @@ class BaseTestCase(unittest.TestCase):
     def run_opencode(
         self,
         prompt: str,
-        model="zhipuai/glm-5", 
+        model="zhipuai/glm-4.7", 
         timeout: float = 60,
         encoding: str = "utf-8"
     ):

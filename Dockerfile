@@ -78,8 +78,8 @@ RUN wget --quiet ${CONDA_URL} -O /root/miniconda.sh && \
     /root/miniconda3/bin/conda init bash && \
     /root/miniconda3/bin/conda config --set auto_update_conda false
 
-############ INSTALL OPENCODE-AI ###############
-RUN curl -fsSL https://opencode.ai/install | bash
+############# INSTALL OPENCODE-AI ###############
+#RUN curl -fsSL https://opencode.ai/install | bash
 
 ############ INSTALL CONDA ENV HUNTIANLING ###############
 COPY environment.yaml .
@@ -100,7 +100,19 @@ RUN echo "source /opt/gromacs/bin/GMXRC" >> /root/.bashrc && \
     echo "source /opt/intel/oneapi/setvars.sh --force" >> /root/.bashrc && \
     echo "conda activate huntianling" >> /root/.bashrc
 
-    
+############ Craton  ############
+# RUN git clone https://github.com/CFL-lab/craton.git
+COPY ./craton /opt/craton
+RUN cd /opt/craton && conda run -n huntianling pip install -e .
+
+############ Huntianling Skills ############
+RUN apt install -y zip
+RUN curl -fsSL https://bun.sh/install | bash
+
 COPY ./ /app/huntianling
 
-RUN rm -rf /var/lib/apt/lists/*
+## OPENCODE ##
+# COPY ./opencode /app/service
+RUN curl -fsSL https://opencode.ai/install | bash
+
+# RUN rm -rf /var/lib/apt/lists/*

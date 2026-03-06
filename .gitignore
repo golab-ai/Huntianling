@@ -18,3 +18,5 @@ venv/
 ###### runjob ######
 runjob/*
 !runjob/.gitkeep
+craton.log
+craton
