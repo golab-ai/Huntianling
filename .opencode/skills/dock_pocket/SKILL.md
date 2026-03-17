@@ -1,5 +1,5 @@
 ---
-name: binding-pocket
+name: dock_pocket
 description: 探索蛋白口袋位置，输出每个口袋的位置、大小、体积、表面积等。用户需要提供一个蛋白文件(.pdb)
 license: Proprietary. LICENSE.txt has complete terms
 ---
@@ -11,14 +11,11 @@ Given a protein structure file (.pdb), identify potential binding pockets and re
 | 参数名 | 类型 | 必填 | 描述 |
 | :--- | :--- | :--- | :--- |
 | `protein_file` | string | 是 | 蛋白文件，通常是pdb文件 ｜
-| `output_dir` | string | 否 | 输出文件的目录 |
 
 ## Quick Start
 
-## 从pdb bank下载
-### 有输出文件夹
-
+运行实例如下：
 ```bash
-python pocket_analyzer {{protein_file}}  -o {{output_dir}}/pockets_summary.csv
-
+craton dock pocket -i {{protein_file}}
 ```
+结果文件生成在运行目录的下的 {{protein_file}}_pocket.csv 和 {{protein_file}}_pocket_cavity.pdb

@@ -1,3 +1,22 @@
+###### macOS ######
+.DS_Store
+.AppleDouble
+._*
+Icon?
+
+###### Python ######
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+.env
+
+###### runjob ######
 runjob/*
 !runjob/.gitkeep
-._*
+craton.log
+craton
