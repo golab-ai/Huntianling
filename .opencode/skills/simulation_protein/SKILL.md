@@ -1,6 +1,6 @@
 ---
 name: simulation_protein
-description: 仅蛋白的 MD，无配体，仅蛋白建盒与模拟
+description: 仅蛋白的MD模拟，无配体，仅蛋白建盒与模拟
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
