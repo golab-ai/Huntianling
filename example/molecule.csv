@@ -1,0 +1,10 @@
+smiles,CAS_number,formula,IUPAC_Name,property,temperature,value,smiles_base
+O(C(OCC)C)CC,105-57-7,C6H14O2,acetal,density_of_liquid,298.15,0.821194235528996
+OC(=O)C,64-19-7,C2H4O2,acetic acid,density_of_liquid,298.15,1.0430336589232516
+O=C(C)C,67-64-1,C3H6O,acetone,density_of_liquid,298.15,0.7856851829424277
+CC=O,'75-07-0',C2H4O,acetaldehyde,density_of_liquid,298.15,0.7738481401141354
+O(C(=O)C)C(=O)C,108-24-7,C4H6O3,acetic anhydride,density_of_liquid,298.15,1.0769599624442814
+C=CC(=O)O,'79-10-7',C3H4O2,acrylic acid,density_of_liquid,298.15,1.0457368494468706
+O=C(C)c1ccccc1,98-86-2,C8H8O,acetophenone,density_of_liquid,298.15,1.0239099192182337
+C#C,74-86-2,C2H2,acetylene,density_of_liquid,298.15,0.3767948918098075
+CC(=O)Cl,75-36-5,C2H3ClO,acetyl chloride,density_of_liquid,298.15,1.1018695758784942
