@@ -116,3 +116,7 @@ COPY ./ /app/huntianling
 RUN curl -fsSL https://opencode.ai/install | bash
 
 # RUN rm -rf /var/lib/apt/lists/*
+
+
+##### Addition ##### (should add to environment.yaml later)
+RUN conda run -n huntianling pip install modelscope 
