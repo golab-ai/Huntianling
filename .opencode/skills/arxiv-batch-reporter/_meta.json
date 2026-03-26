@@ -1,0 +1,11 @@
+{
+  "owner": "xukp20",
+  "slug": "arxiv-batch-reporter",
+  "displayName": "Arxiv Batch Reporter",
+  "latest": {
+    "version": "0.1.1",
+    "publishedAt": 1771071343764,
+    "commit": "https://github.com/openclaw/skills/commit/676d49d1c17adec9030916cd5e9cf795cec6a98b"
+  },
+  "history": []
+}
