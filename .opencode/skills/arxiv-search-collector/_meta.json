@@ -1,0 +1,11 @@
+{
+  "owner": "xukp20",
+  "slug": "arxiv-search-collector",
+  "displayName": "Arxiv Search Collector",
+  "latest": {
+    "version": "0.1.1",
+    "publishedAt": 1771071167907,
+    "commit": "https://github.com/openclaw/skills/commit/f412d9352aa949b39fcc1a07fdd5391d60853e51"
+  },
+  "history": []
+}

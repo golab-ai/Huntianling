@@ -26,14 +26,46 @@ license: Proprietary. LICENSE.txt has complete terms
 
 ## Quick Start
 
-##如果有输出文件夹
+* 如果有输出文件夹
 ```bash
 craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}}-{{atom3}}-{{atom4}} -v {{value}} -o {{output_path}}
 
 ```
 
-##如果没有输出文件夹
+* 如果没有输出文件夹
 ```bash
 craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}}-{{atom3}}-{{atom4}} -v {{value}}
 
+```
+
+* 将二面角旋转到指定值：
+```bash
+craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}}-{{atom3}}-{{atom4}} -v {{value}}
+```
+
+* 将二面角增减某个数值：
+```bash
+craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}}-{{atom3}}-{{atom4}} -v {{value}} -dv True
+```
+
+## example
+
+* 将 xx.sdf 中 1，3，4，5 原子的二面角转到 75 度：
+```bash
+craton stru vary -i xx.sdf -a 1-3-4-5 -v 75
+```
+
+* 将 xx.sdf 中 1，3，4，5 原子的二面角转到 -75 度：
+```bash
+craton stru vary -i xx.sdf -a 1-3-4-5 -v -75
+```
+
+* 将 xx.sdf 中 1，3，4，5 原子的二面角增加 30 度：
+```bash
+craton stru vary -i xx.sdf -a 1-3-4-5 -v 30 -dv True
+```
+
+* 将 xx.sdf 中 1，3，4，5 原子的二面角减小 30 度：
+```bash
+craton stru vary -i xx.sdf -a 1-3-4-5 -v -30 -dv True
 ```

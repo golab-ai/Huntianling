@@ -135,5 +135,9 @@ RUN chown -R www-data:www-data /app/huntianling/opencode_canvas/dist && \
 
 # RUN rm -rf /var/lib/apt/lists/*
 
+##### Addition ##### (should add to environment.yaml later)
+RUN conda run -n huntianling pip install modelscope 
+
 RUN chmod +x /app/huntianling/start_all.sh
 CMD ["/bin/bash", "/app/huntianling/start_all.sh"]
+
