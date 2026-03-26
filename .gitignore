@@ -21,3 +21,10 @@ runjob/*
 craton.log
 craton
 !example/craton
+
+###### model file ######
+.msc
+.mv
+*.pt
+*.pth
+*.pkl
