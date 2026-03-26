@@ -21,7 +21,6 @@ runjob/*
 craton.log
 craton
 !example/craton
-opencode-linux-x64/
 
 ###### model file ######
 .msc
