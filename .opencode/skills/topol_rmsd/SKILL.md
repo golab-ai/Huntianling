@@ -29,6 +29,6 @@ craton stru rmsd -i {{inputs}} -t {{inputs2}} -o {{output_path}}
 
 ##如果没有输出文件夹
 ```bash
-craton stru measure -i {{inputs}} -t {{inputs2}}
+craton stru rmsd -i {{inputs}} -t {{inputs2}}
 
 ```

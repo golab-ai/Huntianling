@@ -20,4 +20,12 @@ runjob/*
 !runjob/.gitkeep
 craton.log
 craton
+!example/craton
 opencode-linux-x64/
+
+###### model file ######
+.msc
+.mv
+*.pt
+*.pth
+*.pkl
