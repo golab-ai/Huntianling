@@ -35,3 +35,21 @@ craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}} -v {{value}} -o {{output_p
 craton stru vary -i {{inputs}} -a {{atom1}}-{{atom2}} -v {{value}}
 
 ```
+
+
+## example
+
+* 将 xx.sdf 中 1，3 原子的键长改到 1.2 A：
+```bash
+craton stru vary -i xx.sdf -a 1-3 -v 1.2
+```
+
+* 将 xx.sdf 中 1，3，4，5 原子的键长增加 0.2 A：
+```bash
+craton stru vary -i xx.sdf -a 1-3 -v 0.2 -dv True
+```
+
+* 将 xx.sdf 中 1，3，4，5 原子的键长减小 0.2 A：
+```bash
+craton stru vary -i xx.sdf -a 1-3 -v -0.2 -dv True
+```
