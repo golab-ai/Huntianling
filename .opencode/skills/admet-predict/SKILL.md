@@ -15,7 +15,6 @@ When given a compound, predict its ADMET properties (absorption, distribution, m
 
 ## 执行
 
-**非常重要** 每次使用该skills时请重新载入环境：
 ```bash
-source "$(conda info --base)/etc/profile.d/conda.sh" && conda activate admet_ai && CUDA_VISIBLE_DEVICES=-1 python admet-predict.py --smiles_file {{smiles_file}} --output_dir {{output_dir}}
+source "$(conda info --base)/etc/profile.d/conda.sh" && conda activate huntianling && CUDA_VISIBLE_DEVICES=-1 python admet-predict.py --smiles_file {{smiles_file}} --output_dir {{output_dir}}
 ```
