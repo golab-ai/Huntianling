@@ -90,7 +90,7 @@ RUN conda create -n rxngraphormer python=3.10 -y
 RUN git clone -b pytorch2 https://github.com/licheng-xu-echo/RXNGraphormer.git
 RUN conda run -n rxngraphormer pip install torch==2.2.1 --index-url https://download.pytorch.org/whl/cu121 && \
     conda run -n rxngraphormer pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.2.0+cu121.html && \
-    conda run -n rxngraphormer pip install rdkit==2024.3.2 ipykernel pandas python-box OpenNMT-py==1.2.0 torchdata==0.7.1 torch_geometric rxnmapper localmapper transformers==4.30.0 numpy==1.26.4 scikit-learn && \
+    conda run -n rxngraphormer pip install modelscope rdkit==2024.3.2 ipykernel pandas python-box OpenNMT-py==1.2.0 torchdata==0.7.1 torch_geometric rxnmapper localmapper transformers==4.30.0 numpy==1.26.4 scikit-learn && \
     cd RXNGraphormer/ && conda run -n rxngraphormer pip install .
 
 RUN conda clean -afy
@@ -106,13 +106,38 @@ COPY ./craton /opt/craton
 RUN cd /opt/craton && conda run -n huntianling pip install -e .
 
 ############ Huntianling Skills ############
-RUN apt install -y zip
-RUN curl -fsSL https://bun.sh/install | bash
+RUN apt install -y zip libxrender1 libxext6
+# RUN curl -fsSL https://bun.sh/install | bash
+
+############ INSTALL NGINX ###############
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY opencode_canvas.conf /etc/nginx/conf.d/opencode_canvas.conf
+
+## canvas service ##
+COPY opencode_canvas/backend/requirements.txt .
+RUN conda create -n canvas_api python=3.10 -y && \
+    conda run -n canvas_api pip install --no-cache-dir \
+    -r requirements.txt \
+    -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 COPY ./ /app/huntianling
 
+RUN chown -R www-data:www-data /app/huntianling/opencode_canvas/dist && \
+    chmod -R 755 /app/huntianling/opencode_canvas/dist
+
 ## OPENCODE ##
 # COPY ./opencode /app/service
-RUN curl -fsSL https://opencode.ai/install | bash
+# If you want the original version of opencode code, use the following command. 
+# RUN curl -fsSL https://opencode.ai/install | bash
 
 # RUN rm -rf /var/lib/apt/lists/*
+
+##### Addition ##### (should add to environment.yaml later)
+RUN conda run -n huntianling pip install modelscope 
+
+RUN chmod +x /app/huntianling/start_all.sh
+CMD ["/bin/bash", "/app/huntianling/start_all.sh"]
+

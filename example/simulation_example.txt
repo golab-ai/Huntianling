@@ -1,0 +1,45 @@
+###
+1. 小分子rbfe计算
+    请帮我生成rbfe计算的输入文件，蛋白是@tyk2_protein.pdb，配体是@tyk2_ligands.sdf，输出到./runjob/rbfe
+2. 小分子abfe计算
+    请帮我生成rbfe计算的输入文件，蛋白是@tyk2_protein.pdb，配体是@tyk2_ligands.sdf，输出到./runjob/abfe
+3. 小分子alogp计算 ###测试不通过
+    请帮我生成进行logp计算的输入文件，分子是@logp.csv。输出到./runjob/alopg
+    请帮我生成进行油水分配系数计算的输入文件，分子是@logp.csv，输出到./runjob/alopg
+4. complex复合物计算
+    请帮我生成进行蛋白与小分子complex计算的输入文件,蛋白是@tyk2_protein.pdb，配体是@tyk2_ligands.sdf，文件输出到./runjob/complex
+    请帮我生成进行蛋白与小分子复合物计算的输入文件,蛋白是@tyk2_protein.pdb，配体是@tyk2_ligands.sdf,输出到./runjob/complex
+5. hfe(水合自由能)计算
+    请帮我生成HFE计算的输入文件,分子是@HFE.csv，文件输出到./runjob/hfe
+    请帮我生成水合自由能计算的输入文件,分子是@HFE.csv，文件输出到./runjob/hfe.
+6. liquid(纯液相)MD计算
+    请帮我生成进行液相MD计算的输入文件，分子是@molecule.csv, 输出到./runjob/liquid
+    请帮我生成进行液相MD计算的输入文件，分子是 c1ccccc1c1ccccc1,输出到./runjob/liquid. 你可以尝试直接把smiles作为变量传给craton命令
+7. 真空态模拟计算
+    请帮我生成进行单分子MD计算的输入文件，分子是@molecule.csv，输出到./runjob/vacuum
+8. 蛋白大分子模拟
+    请帮我生成进行蛋白模拟的输入文件,蛋白是@tyk2_protein.pdb, 输出到./runjob/protein
+9. 溶液相模拟计算
+    请帮我生成进行溶液相MD计算的输入文件，分子是@molecule.csv，输出到./runjob/solution
+10. 热膨胀系数(ap)计算
+    请帮我计算@molecule.csv的热膨胀系数，输出到./runjob/property_ap
+11. 等压热容计算
+    请帮我计算@molecule.csv的等压热容, 输出到./runjob/property_cp
+12. 扩散系数计算
+    请帮我计算@molecule.csv的扩散系数, 输出到./runjob/property_dc
+13. 密度计算
+    请帮我计算@molecule.csv的密度, 输出到./runjob/property_den
+14. 介电系数计算
+    请帮我计算@molecule.csv的介电常数, 输出到./runjob/property_er
+15. 蒸发焓计算
+    请帮我计算@molecule.csv的蒸发焓, 输出到./runjob/property_hov
+16. 压缩系数计算####有问题
+    请帮我计算@molecule.csv的压缩系数, 输出到./runjob/property_kt
+17. 表面张力计算
+    请帮我计算@molecule.csv的表面张力, 输出到./runjob/property_st
+18. 热传导系数计算
+    请帮我计算@molecule.csv的热传导系数, 输出到./runjob/property_td
+19. 粘度计算
+    请帮我计算@molecule.csv的粘度, 输出到./runjob/property_vis
+20. 计算液相的多种性
+    请帮我计算@molecule.csv的多种性质, 输出到./runjob/property_all
