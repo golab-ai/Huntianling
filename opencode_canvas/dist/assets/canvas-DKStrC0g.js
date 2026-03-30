@@ -1,1 +1,0 @@
-import{c as e,p as t,g as i}from"./index-oOlqkicm.js";const m={smiles:"",molData:""},o=e()(t(s=>({...m,setSmiles:a=>{s({smiles:a})},setMolData:a=>{s({molData:a})},clearSmiles:()=>{s({smiles:""})}}),{name:i("canvas-smiles")}));export{o as u};
