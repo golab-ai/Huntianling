@@ -10,7 +10,6 @@ __pycache__/
 *.so
 *.egg
 *.egg-info/
-dist/
 build/
 venv/
 .env
