@@ -20,12 +20,12 @@ RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRO
 RUN echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list
 RUN apt-get update && apt-get install -y intel-oneapi-base-toolkit && rm -rf /var/lib/apt/lists/*
 
-# 下载并编译 GROMACS 2021
-RUN wget https://ftp.gromacs.org/gromacs/gromacs-2023.tar.gz
+# 下载并编译 GROMACS
+# RUN wget https://ftp.gromacs.org/gromacs/gromacs-2023.tar.gz
+RUN git clone https://github.com/golab-ai/gromacs-fep.git
 
 RUN source /opt/intel/oneapi/setvars.sh --force && \
-    tar -xzf gromacs-2023.tar.gz && \
-    cd gromacs-2023 && \
+    cd gromacs-fep && \
     mkdir build && cd build && \
     cmake .. \
         -DGMX_BUILD_OWN_FFTW=ON \
