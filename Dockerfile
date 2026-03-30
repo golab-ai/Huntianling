@@ -56,7 +56,6 @@ RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRO
 RUN echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list
 RUN apt update
 RUN apt install -y intel-oneapi-mkl intel-oneapi-mpi
-# COPY --from=gromacs-builder /opt/intel /opt/intel
 
 ############ INSTALL BASE TOOLS ###############
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -101,8 +100,8 @@ RUN echo "source /opt/gromacs/bin/GMXRC" >> /root/.bashrc && \
     echo "conda activate huntianling" >> /root/.bashrc
 
 ############ Craton  ############
-# RUN git clone https://github.com/CFL-lab/craton.git
-COPY ./craton /opt/craton
+RUN git clone git@github.com:golab-ai/craton.git
+# COPY ./craton /opt/craton
 RUN cd /opt/craton && conda run -n huntianling pip install -e .
 
 ############ Huntianling Skills ############
@@ -136,7 +135,7 @@ RUN chown -R www-data:www-data /app/huntianling/opencode_canvas/dist && \
 # RUN rm -rf /var/lib/apt/lists/*
 
 ##### Addition ##### (should add to environment.yaml later)
-RUN conda run -n huntianling pip install modelscope 
+# RUN conda run -n huntianling pip install modelscope 
 
 RUN chmod +x /app/huntianling/start_all.sh
 CMD ["/bin/bash", "/app/huntianling/start_all.sh"]
