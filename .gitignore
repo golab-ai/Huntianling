@@ -21,3 +21,5 @@ runjob/*
 craton.log
 craton
 !example/craton
+.mv
+.msc

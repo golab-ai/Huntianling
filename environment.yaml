@@ -49,3 +49,7 @@ dependencies:
     - gemmi
     - dimorphite_dl
     - biobb_pdb_tools
+    - dotenv
+    - alibabacloud-oss-v2
+    - torch_geometric
+    - modelscope

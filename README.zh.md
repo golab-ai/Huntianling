@@ -30,7 +30,7 @@
 ### 下载
 
 ```bash
-git clone https://github.com/Gewu-Intelligence/Huntianling
+git clone https://github.com/golab-ai/Huntianling
 cd Huntianling
 ```
 
