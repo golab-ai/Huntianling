@@ -54,11 +54,11 @@ class TestGmxProc(BaseTestCase):
 
     @test_level(0)
     def test_05_atom_type_abs_path(self):
-        prompt = "'/home/public/agent_2/runjob/craton/ligand1prepped.sdf'确认此分子适合的原子类型用于后续力场参数获取。"
+        prompt = "'./example/craton/ligand1prepped.sdf'确认此分子适合的原子类型用于后续力场参数获取。"
         code, out, err = self.run_opencode(prompt, model="zhipuai/glm-5", timeout=120)
         self.save_stdout_stderr(out, err, "runjob/craton/atom_type_abs_path")
 
-        outputfile = "/home/public/agent_2/runjob/atom_type.txt"
+        outputfile = "./runjob/atom_type.txt"
         self.assertFileExists(outputfile)
         with open(outputfile, "r") as f:
             content = f.read()
@@ -66,20 +66,20 @@ class TestGmxProc(BaseTestCase):
 
     @test_level(0)
     def test_06_mm_center_abs_path(self):
-        prompt = "'/home/public/agent_2/runjob/craton/ligand1prepped.sdf'基于分子力学，计算分子的几何中心、质点、体积中心，结果保存在/runjob/craton"
+        prompt = "'./example/craton/ligand1prepped.sdf'基于分子力学，计算分子的几何中心、质点、体积中心，结果保存在/runjob/craton"
         code, out, err = self.run_opencode(prompt, model="zhipuai/glm-5", timeout=120)
         self.save_stdout_stderr(out, err, "runjob/craton/center_abs_path")
 
-        outputfile = "/home/public/agent_2/runjob/craton/center.txt"
+        outputfile = "./runjob/craton/center.txt"
         self.assertFileExists(outputfile)
 
     @test_level(0)
     def test_07_mm_dipole_abs_path(self):
-        prompt = "'/home/public/agent_2/runjob/craton/ligand1prepped.sdf'利用力场和分子力学方法，计算分子的偶极矩，输出文件保存在/runjob/craton中"
+        prompt = "'./example/craton/ligand1prepped.sdf'利用力场和分子力学方法，计算分子的偶极矩，输出文件保存在/runjob/craton中"
         code, out, err = self.run_opencode(prompt, model="zhipuai/glm-5", timeout=120)
         self.save_stdout_stderr(out, err, "runjob/craton/dipole_abs_path")
 
-        outputfile = "/home/public/agent_2/runjob/craton/dipole.txt"
+        outputfile = "./runjob/craton/dipole.txt"
         self.assertFileExists(outputfile)
 
 if __name__ == "__main__":

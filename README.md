@@ -41,7 +41,7 @@ Huntianling is an integrated multi-agent skills system designed for AI-driven dr
 #### 1. Clone the project
 
 ```bash
-git clone https://github.com/Gewu-Intelligence/Huntianling
+git clone https://github.com/golab-ai/Huntianling
 cd Huntianling
 ```
 
