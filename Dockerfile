@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     gcc \
     g++ \
+    ssh \
     && rm -rf /var/lib/apt/lists/*
 
 # 安装 Intel OneAPI（用于 MPI 编译）
@@ -22,7 +23,9 @@ RUN apt-get update && apt-get install -y intel-oneapi-base-toolkit && rm -rf /va
 
 # 下载并编译 GROMACS
 # RUN wget https://ftp.gromacs.org/gromacs/gromacs-2023.tar.gz
-RUN git clone https://github.com/golab-ai/gromacs-fep.git
+RUN mkdir -p -m 0700 ~/.ssh && \
+    ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN --mount=type=ssh git clone git@github.com:golab-ai/gromacs-fep.git
 
 RUN source /opt/intel/oneapi/setvars.sh --force && \
     cd gromacs-fep && \
@@ -100,7 +103,10 @@ RUN echo "source /opt/gromacs/bin/GMXRC" >> /root/.bashrc && \
     echo "conda activate huntianling" >> /root/.bashrc
 
 ############ Craton  ############
-RUN git clone git@github.com:golab-ai/craton.git
+RUN apt-get install -y ssh
+RUN mkdir -p -m 0700 ~/.ssh && \
+    ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN --mount=type=ssh cd /opt && git clone git@github.com:golab-ai/craton.git
 # COPY ./craton /opt/craton
 RUN cd /opt/craton && conda run -n huntianling pip install -e .
 
