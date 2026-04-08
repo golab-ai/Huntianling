@@ -106,8 +106,10 @@ RUN echo "source /opt/gromacs/bin/GMXRC" >> /root/.bashrc && \
 RUN apt-get install -y ssh
 RUN mkdir -p -m 0700 ~/.ssh && \
     ssh-keyscan github.com >> ~/.ssh/known_hosts
-RUN --mount=type=ssh cd /opt && git clone git@github.com:golab-ai/craton.git
-# COPY ./craton /opt/craton
+# ARG CRATON_COMMIT
+# RUN echo "Craton commit: ${CRATON_COMMIT}"
+# RUN --mount=type=ssh cd /opt && git clone git@github.com:golab-ai/craton.git
+COPY ./craton /opt/craton
 RUN cd /opt/craton && conda run -n huntianling pip install -e .
 
 ############ Huntianling Skills ############

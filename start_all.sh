@@ -3,6 +3,9 @@
 # 先激活环境
 source "$(conda info --base)/etc/profile.d/conda.sh" && conda activate huntianling
 
+# 激活工具
+source /opt/gromacs/bin/GMXRC && source /opt/intel/oneapi/setvars.sh --force
+
 # 启动opencode（后台运行）
 /app/huntianling/opencode-linux-x64/bin/opencode web --hostname 0.0.0.0 --port 3000 &
 
