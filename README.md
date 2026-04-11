@@ -2,84 +2,67 @@
 
 [English](README.md) | [简体中文](README.zh.md) | [视频](https://www.bilibili.com/video/BV19CcTzFEH4)
 
-Huntianling is an integrated multi-agent skills system designed for AI-driven drug discovery (AIDD), covering the full computational discovery workflow from target protein investigation, structural analysis, pocket-based molecular generation, docking, molecular dynamics (MD) simulations, to high-accuracy FEP free-energy calculations. Rather than functioning as isolated tools, the Agents act as clearly specialized “professional AI roles” that can collaborate with one another: they automatically hand off tasks within a unified framework, share intermediate results, and interact with team members through natural language and structured information. This enables a modularized, automated, and collaborative research workflow, advancing drug discovery from “human-driven” to “agent-collaboration-driven.”
+Huntianling is an integrated multi-agent skills system designed for AI-driven material sciences, aimed at building an orchestrable, extensible, and accumulable foundation for intelligent computing. It covers key stages from prediction of moleculars' macroscopic physicochemical properties, molecular dynamics simulation, materials property calculations, free-energy perturbation calculations, to reaction and synthesis planning —forming workflows that run through computational chemistry, materials science, drug discovery, and related fields. Tools work together under one framework, share intermediate results, and serve researchers through natural language and structured outputs—helping move materials research from manual, tool-by-tool work toward agent-collaboration-driven workflows with closed-loop support.
 
+Taking molecule drug discovery as an example:
 <div align="center">
 <img src="./images/flowchart_en.jpg" alt="main_flowchart" width="100%" />
 </div>
 
 ## Skills
-
-- Bioinformatics & structural investigation: UniProt/PDB fetch, chain & conformation selection, identification of missing residues and ligands.
-
-- Patent research: WO/US/CN patent searching and analysis
-
-- PDB file processing: PDB download, format conversion, chain splitting, hydrogen addition/completion, protonation, removal of waters/ions, etc.
-
-- Protein preparation: conformation cleanup, residue repair, apo/holo selection, energy minimization
-
-- Molecular dynamics (MD) simulation: system setup, short relaxation, production runs, trajectory and energy output/analysis
-
-- Pocket prediction: geometry/energy/deep-learning based scoring
-
-- Molecule generation: SMILES generation based on pocket/constraints/fragments/property conditions
-
-- Ligand preparation: desalting, stereoisomers/protonation/tautomers selection, 3D conformers, SDF output
-
-- Molecular docking: grid docking box, docking, scoring, pose filtering/selection
-
-- FEP: relative/absolute free-energy calculation, FEP workflow management, topology mapping, results summarization
-
-- Synthetic route prediction: retrosynthetic routes analysis
-
-- Communication & collaboration: email drafting (internal medicinal chemistry review / external vendor RFQs)
-
-- Compound registration: structured entry of compound & project metadata into inventory (registration number, batch, properties, source, etc.)
+* Reaction and synthesis planning: Retrosynthetic route prediction, forward synthesis product prediction, reaction yield and selectivity prediction
+* Physicochemical property prediction (Suiren fine-tuned model): Phase-transition temperature, density, vapor pressure, and critical properties, dielectric constant, etc.
+* Molecular dynamics simulation: MD simulation of multiple systems, liquid-phase property calculation, free energy calculation(FEP)
+* Molecular topology analysis: Structural feature identification, parameter measurement, structural manipulation, molecular fragmentation
+* Molecular mechanics and force fields: Energy/force/Hessian evaluation, structure optimization, potential energy surface scanning, force field parameter fitting
+* Protein processing: Structure preprocessing, amino acid mutation/modification, PDB/UniProt information retrieval
+* Molecular discovery and design: Molecular docking, pocket detection, binding free energy, solubility, and partition coefficient calculation
+* ADMET assessment: Compound ADMET property prediction, molecular information queries, database management
+* Auxiliary tools: Structure visualization, PDB download, patent and literature search
 
 ## Installation
 
+### Install via image (Recommended)
+
+We recommend installing via Docker. The environment, dependencies, and Python environment required for Huntianling are all packaged in the image. You can pull and start the image using the following command:
+```
+docker pull crpi-lk3um3q91l9bb8oe.cn-shanghai.personal.cr.aliyuncs.com/huntianling/hun:v0.0.2
+docker run -d \
+  --name huntianling-service \
+  -p 3001:3001 \
+  -p 3000:3000 \
+  -e PDB_VIEWER_URL="https://localhost:3001" \
+  -v ~/.opencodeconfig:/root/.local \
+  crpi-lk3um3q91l9bb8oe.cn-shanghai.personal.cr.aliyuncs.com/huntianling/hun:v0.0.2
+```
+Subsequently, a web-based chat service should be accessible via https://localhost:3000 on the local network.
+
+Users can select their LLM provider and model through the web UI. We recommend using the Zhipu GLM-5 model, as all current capabilities of this project have been tested on this model.
+
+
+### Install directly
+
 #### 1. Clone the project
 
+Install the basic environment using the following command:
 ```bash
 git clone https://github.com/golab-ai/Huntianling
 cd Huntianling
-```
-
-#### 2. Create a conda environment
-
-```bash
 conda env create -f environment.yaml
 conda activate huntianling
 ```
 
-#### 3. Install OpenCode
-
+Then, the web page service and canvas service are started:
 ```bash
-npm install -g opencode-ai
-## or
-curl -fsSL https://opencode.ai/install | bash
+conda activate huntianling && opencode-linux-x64/bin/opencode web --hostname 0.0.0.0 --port 3000 &
+bash opencode_canvas/start_drug_design.sh
 ```
-You can also install it using other methods described in the [OpenCode docs](https://opencode.ai/docs).
-
-After that, you should be able to launch the OpenCode TUI (terminal user interface) from your shell:
-
-```bash
-opencode
-``` 
-or start a local web server:
- 
-```bash
-OPENCODE_SERVER_USERNAME=who OPENCODE_SERVER_PASSWORD=secret opencode web --hostname 127.0.0.1 --port 4059
-```
-
-Open a browser and go to [https://localhost:4059]. Log in with the corresponding username and password to access OpenCode’s web service. For LAN access, replace 127.0.0.1 with 0.0.0.0.
-
-For the LLM model, Zhipu AI GLM-4.7 is recommended.
+You can access web services by visiting  https://localhost:3000 in your browser. Similarly, you can then select your LLM provider and model through the web UI.
 
 > 
 #### 4. Other software (optional)
 
-1. Gromacs
+##### Gromacs
     
     If you plan to use GROMACS for MD simulations, make sure gmx or gmx_mpi is correctly set in your environment variables (PATH). Please refer to the[GROMACS Installation guide](https://manual.gromacs.org/documentation/current/install-guide/index.html)
     ```bash
@@ -89,7 +72,8 @@ For the LLM model, Zhipu AI GLM-4.7 is recommended.
     source $GMX_PATH/install/bin/GMXRC
     gmx_mpi --version
     ```
-2. Retrosynthesis
+
+##### Retrosynthesis
 
     For retrosynthesis analysis, use the team-developed [RXNGraphormer](https://github.com/licheng-xu-echo/RXNGraphormer)
     ```bash
@@ -111,23 +95,22 @@ For the LLM model, Zhipu AI GLM-4.7 is recommended.
 <img src="./images/wciki-bm6ev.gif" alt="main_flowchart" width="80%" />
 </div>
 
-More examples can be found in [example docs](example/example.md)
-
-* Download pdb
 ```
-Download the PDB file of 8S99 (save as .pdb，output to ./pdb)
+Download an 8S9A protein and then add hydrogen to it.
 ```
 
-* Structure preparation
 ```
-Protein preparation of 8S99 (input ./pdb/8S99.pdb，output to ./pdb)
-```
-* MD
-```
-Run MD simulation (10000 steps, input ./pdb/protein_A_apo.pdb.pdb；output to ./md)
+Run MD simulation, 10000 steps, input with example/tyk2_protein.pdb, output to ./runjob/md
 ```
 
-* Pocket prediction
 ```
-Predict the pocket of 8S99, (input ./pdb/protein_A_apo.pdb.pdb, output to ./pocket/)
+There's a tyk2 PDB file and a ligand SDF file in the example folder. Perform a docking.
+```
+
+```
+Calculate the dielectric constant of example/molecule.csv and output it to ./runjob/property_er
+```
+
+```
+Perform retrosynthetic analysis on the target molecules in the list. ['COC(=O)[C@H](CCCCN)NC(=O)Nc1cc(OC)cc(C(C)(C)C)c1O', 'O=C(Nc1cccc2cnccc12)c1cc([N+](=O)[O-])c(Sc2c(Cl)cncc2Cl)s1', 'CCN(CC)Cc1ccc(-c2nc(C)c(COc3ccc([C@H](CC(=O)N4C(=O)OC[C@@H]4Cc4ccccc4)c4ccon4)cc3)s2)cc1']
 ```
